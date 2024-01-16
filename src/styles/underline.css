@@ -1,0 +1,27 @@
+.underlineAnimate {
+    background:
+        linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1)),
+        linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+    background-size: 100% 0.1em, 0 0.1em;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms ease-in-out;
+}
+
+
+
+
+li.grid#suggested-post {
+    @apply underlineAnimate
+}
+
+
+
+.underlineAnimate:hover,
+.underlineAnimate:focus {
+    background-size: 0 0.1em, 100% 0.1em;
+}
+
+.nav-link {
+    @apply underlineAnimate;
+}

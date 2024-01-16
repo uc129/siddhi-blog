@@ -1,0 +1,53 @@
+/* let panels = [
+- { k: 1, dx: 0, dz: -.2 }, 
+- { k: 2, dx: -.1 }, 
+- { k: 1, dx: .1 }
+- ]; */
+
+
+:root {
+    --p: 0.5;
+    --k: 1;
+    --dx: 0;
+    --dz: 0;
+}
+
+
+#profile-image div {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+#profile-image .assembly {
+    top: 50%;
+    left: calc(50% - .5*var(--dx)*85vmin);
+    transform: rotateY(35deg);
+}
+
+#profile-image .panel {
+    --mid: calc((var(--p) + var(--k)*0.25)*85vmin);
+    transform: translate3d(calc(var(--dx)*85vmin), 0, calc(var(--dz)*85vmin));
+}
+
+#profile-image .panel:before,
+.panel:after {
+    position: absolute;
+    margin: -32.5vmin -42.5vmin;
+    width: 85vmin;
+    height: 65vmin;
+    background: url("../../public/assets/siddhi-art/profile.jpg") 100%/contain;
+    content: "";
+}
+
+#profile-image .panel:before {
+    transform-origin: var(--mid);
+    transform: rotateY(-90deg);
+    -webkit-clip-path: inset(0 calc(100% - var(--mid)) 0 calc(var(--p)*100%));
+    clip-path: inset(0 calc(100% - var(--mid)) 0 calc(var(--p)*100%));
+    filter: brightness(0.4);
+}
+
+#profile-image .panel:after {
+    -webkit-clip-path: inset(0 calc(100% - (var(--p) + var(--k))*85vmin) 0 var(--mid));
+    clip-path: inset(0 calc(100% - (var(--p) + var(--k))*85vmin) 0 var(--mid));
+}
