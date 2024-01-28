@@ -10,7 +10,8 @@ const AdminSidebar = () => {
 
 
     return (
-        <div className="sidebar p-4 h-full bg-green-200 border-2 border-l-0 border-black">
+        <div className="sidebar p-4 h-full bg-green-200 rounded-r-lg
+                    border-2 border-l-0 border-black">
 
             <div className="sidebar_title pb-8">
                 <h2>Admin</h2>

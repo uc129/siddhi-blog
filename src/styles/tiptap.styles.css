@@ -1,0 +1,112 @@
+button, select{
+    @apply font-mono border-[1px] bg-black text-white text-sm  border-black rounded-lg
+                 hover:bg-yellow-200 hover:text-black py-1 px-4 
+                 hover:-translate-y-1 transition-all duration-200 ease-in-out
+}
+
+select{
+    @apply border-[1px] border-white font-mono  bg-black text-white 
+    text-sm rounded-lg hover:bg-yellow-200 hover:text-black py-1 px-1 text-center
+    hover:-translate-y-1 transition-all duration-200 ease-in-out
+}
+
+/* button.textButton{
+    @apply text-white bg-black hover:text-yellow-200   hover:-translate-y-1
+}
+
+button.paddedButton{
+    @apply text-white bg-black border-[1px] border-black rounded-lg hover:bg-yellow-200 py-1 px-4
+} */
+
+
+
+.is-active {
+    @apply bg-yellow-200 text-black font-mono px-2
+}
+
+/* -------------- */
+
+.tiptap>*+* {
+    @apply mt-[0.75em];
+}
+
+
+
+
+
+.tiptap ul,
+.tiptap ol {
+    @apply px-4 py-0;
+}
+
+.tiptap ul {
+    @apply list-disc;
+}
+
+.tiptap ol {
+    @apply list-decimal;
+}
+
+.tiptap h1,
+.tiptap h2,
+.tiptap h3,
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+    @apply leading-[1.1];
+}
+
+.tiptap h1 {
+    @apply text-[2.5rem] font-bold;
+}
+
+.tiptap h2 {
+    @apply text-[2rem] font-bold;
+}
+
+.tiptap h3 {
+    @apply text-[1.75rem] font-bold;
+}
+
+.tiptap h4 {
+    @apply text-[1.5rem] font-bold;
+}
+
+.tiptap h5 {
+    @apply text-[1.25rem] font-bold;
+}
+
+.tiptap h6 {
+    @apply text-[1rem] font-bold;
+}
+
+
+
+
+.tiptap code {
+    @apply font-mono
+}
+
+.tiptap pre {
+    @apply text-white px-4 py-3 rounded-lg;
+    background: #0d0d0d;
+    font-family: "JetBrainsMono", monospace;
+}
+
+.tiptap pre code {
+    @apply text-inherit text-[0.8rem] p-0;
+    background: none;
+}
+
+.tiptap img {
+    @apply max-w-full h-auto;
+}
+
+.tiptap blockquote {
+    @apply pl-4 border-l-2 border-gray-100 border-solid;
+}
+
+
+.tiptap hr {
+    @apply mx-0 my-8 border-t-2 border-gray-100 border-[none] border-solid;
+}

@@ -1,144 +1,131 @@
-import { PostData } from "../data/postData"
+
 import PostHero from "../components/postHero"
-// import BodyBackground from "../components/bodyBackground"
-// import NavBar from "../components/navbar"
-// import Footer from "../components/footer"
-import Layout from "../components/Layout"
-import { useState } from "react";
+import Layout from "../components/layout"
+import React, { useEffect, useState } from 'react';
+import axiosClient from '../utils/axiosClient';
+import { useQuery } from 'react-query'
+import { useAuth } from "../utils/authProvider";
+import Elephant from "../components/elephant";
+import { FaRegArrowAltCircleUp } from "react-icons/fa";
 
 
-const SortPostsByViews = PostData.sort((a, b) => b.numOfViews - a.numOfViews)
-const mostViewedPosts = SortPostsByViews.slice(0, 5) // get the first 5 posts
-const sortPostsByDate = PostData.sort((a, b) => b.date - a.date);
-
-
-
-let postIncrement = 2;
-let postLimitNumber = 2;
 
 const BlogPage = () => {
+    let postIncrement = 2;
+    let postLimitNumber = 3;
 
+    const { isAuthenticated } = useAuth()
+    const [posts, setPosts] = useState([]);
     const [postLimit, setPostLimit] = useState(postLimitNumber);
-    // const [loadedPosts, setLoadedPosts] = useState(sortPostsByDate.slice(0, postLimit));
+    const [mostViewedPosts, setMostViewedPosts] = useState([]);
+    const [limitedPosts, setLimitedPosts] = useState([]);
+
+    const { isLoading, isError, error } = useQuery('posts', fetchPosts)
+
+
+    async function fetchPosts() {
+        const { data } = await axiosClient.get('/blog/posts/all').catch((err) => console.log(err))
+        if (!data) return;
+        const sortedPosts = data.sort((a, b) => new Date(b.dates.initiated) - new Date(a.dates.initiated));
+        setTimeout(() => setPosts(sortedPosts), 3000)
+        return data
+    }
+
+    useEffect(() => {
+        if (!posts) return
+        setLimitedPosts(posts.slice(0, postLimit))
+        setMostViewedPosts(posts.sort((a, b) => b.meta.numOfViews - a.meta.numOfViews).slice(0, 5))
+    }, [posts, postLimit, postLimitNumber])
+
+    if (!posts.length > 0 || isLoading) {
+        return <Elephant scale={'0.4'} />
+    }
+
+    if (isError) return <span>Error: {error.message}</span>
 
 
     return (
         <Layout>
-            <div className="header p-4 flex justify-between ">
-                <h1 className="posts">
-                    Recent
-                </h1>
-
-                <div className="flex  gap-4" >
-
-                    <a href="/new-post" className="flex items-center justify-center  w-10  h-10 rounded-[50%] bg-white sticky top-0 hover:bg-orange-200 ">
+            <div className="header p-4 flex justify-between font-mono ">
+                {isAuthenticated && <div className="flex  gap-4" >
+                    <a href="/admin?action=new-post" className="flex items-center justify-center  w-10  h-10 rounded-[50%] bg-white sticky top-0 hover:bg-orange-200 ">
                         <img src='/assets/grainyFilter.svg' alt='filter' className=" absolute top-0 rounded-[50%] pointer-events-none" />
                         <img src='/assets/icons/new-post.svg' alt='new-post' className="w-5 absolute top-2 pointer-events-none " />
                     </a>
 
-                    <a href="/blog/posts/all" className="flex items-center justify-center  w-10  h-10 rounded-[50%] bg-white sticky top-0 hover:bg-green-200  ">
+                    <a href="/admin?action=all-posts" className="flex items-center justify-center  w-10  h-10 rounded-[50%] bg-white sticky top-0 hover:bg-green-200  ">
                         <img src='/assets/grainyFilter.svg' alt='filter' className=" absolute top-0 rounded-[50%] pointer-events-none" />
                         <img src='/assets/icons/new-post.svg' alt='new-post' className="w-5 absolute top-2 pointer-events-none " />
                     </a>
-
-
-
                 </div>
+                }
             </div>
 
-            <div className="wrapper max-w-screen h-full flex justify-between overflow-scroll scroll-smooth ">
 
+            <section className="wrapper max-w-screen h-full flex justify-between overflow-scroll scroll-smooth p-2  ">
+                <h1 id='recent-heading' className="posts pt-14 pb-4 underline underline-offset-4"> Recent Posts </h1>
 
-                <div className="container col-span-4 w-[70%] h-full  s">
-
-                    {sortPostsByDate.map((postDetail, index) => {
-                        if (index >= postLimit) return null;
+                <div className=" w-[60%] h-full">
+                    {limitedPosts && limitedPosts.map((post, index) => {
                         return (
-                            <div>
+                            // <div key={post._id} className={`${index % 2 === 0 ? 'text-black' : 'text-white'}`}>
+                            <div key={post._id} className={`text-black`}>
 
-                                <div key={index}
-                                    className="">
+                                <PostHero
+                                    date={post.dates.initiated}
+                                    author={post.author || 'Unnati'}
+                                    volume={post.volume}
+                                    postNumber={post.postNumber}
+                                    title={post.title}
+                                    slug={post._id}
+                                    numOfViews={post.meta.numOfViews}
+                                    bgImage={post.images[0]}
 
-                                    <PostHero
-
-                                        date={postDetail.date}
-                                        author={postDetail.author}
-                                        volume={postDetail.volume}
-                                        postNumber={postDetail.postNumber}
-                                        title={postDetail.title}
-                                        slug={postDetail.slug}
-                                    />
-                                </div>
-
-
-                                {/* <div key={index * 100}
-                                    className="">
-
-                                    <PostHero
-
-                                        date={postDetail.date}
-                                        author={postDetail.author}
-                                        volume={postDetail.volume}
-                                        postNumber={postDetail.postNumber}
-                                        title={postDetail.title}
-                                        slug={postDetail.slug}
-                                    />
-                                </div> */}
-
-
+                                />
                             </div>
-
-
-
                         )
                     })}
 
                     {
-                        postLimit < sortPostsByDate.length &&
-                        <button onClick={() => setPostLimit(postLimit + postIncrement)}
-                            className="h-10 px-10  mb-10 text-white hover:text-orange-600">
-                            Load More..
-                        </button>
+                        posts && (postLimit < posts.length) &&
+                        <div className="flex justify-between ">
+                            <button onClick={() => setPostLimit(postLimit + postIncrement)}
+                                className="h-10 px-10  mb-10 text-white hover:text-orange-600">
+                                Load More..
+                            </button>
+
+
+                        </div>
                     }
 
+                    <span className="h-10  px-10 float-right  mb-10">
+                        <p className="flex gap-4 items-center"> TOP  <FaRegArrowAltCircleUp onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0 }) }} />  </p>
+                    </span>
 
 
                 </div>
-                <div>
 
-                </div>
 
 
                 {/* Right side link */}
-                <div className="wrapper w-[24%] sticky top-0 ">
+                <div className="wrapper pl-16 justify-between w-[24%] sticky top-0 ">
 
                     <div className="container ">
-                        <h1 className="text-lg text-left font-bold p-10 underline underline-offset-2">
+                        <h1 className="text-lg text-left font-bold  p-10 underline underline-offset-2">
                             Most Popular
                         </h1>
 
                         <ul>
-
-
-
                             {
                                 mostViewedPosts.map((post, index) => {
                                     return (
 
-                                        <li className="flex items-center justify-between p-2">
-
-                                            <h5 className=" ">
-                                                {post.title}
-                                            </h5>
-
-
+                                        <li key={index} className="flex items-center justify-between p-2">
+                                            <h5 className=" ">{post.title} </h5>
                                             <div className="pb-4  flex gap-2">
-                                                <span>
-                                                    {post.numOfViews}
-                                                </span>
+                                                <span> {post.numOfViews}</span>
                                                 <img src='/assets/icons/eye.svg' alt='eye' className="w-5" />
                                             </div>
-
                                         </li>
 
                                     )
@@ -147,11 +134,13 @@ const BlogPage = () => {
                         </ul>
                     </div>
 
+
+
                 </div>
 
 
 
-            </div>
+            </section>
 
         </Layout>
 

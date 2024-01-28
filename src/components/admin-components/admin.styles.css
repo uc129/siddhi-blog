@@ -1,0 +1,9 @@
+.form-group{
+    @apply flex flex-col items-center justify-center w-[80%] mx-auto
+}
+
+.form-control{
+    @apply  min-h-[24px] min-w-[110%]  rounded-lg border-[1px]  border-yellow-200 bg-transparent
+     p-2  px-4 mb-4 outline-none text-black;
+}
+

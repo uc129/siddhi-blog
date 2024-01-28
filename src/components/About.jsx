@@ -1,30 +1,28 @@
 
 
+// import { useCookies } from 'react-cookie'
 import '../styles/background.css'
-// import { useState } from 'react'
-
-
+import { useContext } from 'react';
+import { ScrollContext } from '../utils/scrollObserver';
+import { imageLinks } from '../utils/imageLinks';
 
 
 const AboutMe = () => {
 
-    // const [opacity, setOpacity] = useState(0)
+    // const [cookie] = useCookies(['user'])
+    // console.log('cookie-about-page', cookie);
+
+    const { scrollY } = useContext(ScrollContext)
 
     const handleMouseEnter = () => {
-        document.getElementById('box2').classList.add('box-hover')
-        document.getElementById('box1').classList.add('box-hover')
-        document.getElementById('box1').classList.remove('box1-bgImage')
-
-
-
-
-
+        document.getElementById('box2')?.classList.add('box-hover')
+        document.getElementById('box1')?.classList.add('box-hover')
+        document.getElementById('box1')?.classList.remove('box1-bgImage')
     }
 
     const handleMouseLeave = () => {
-        document.getElementById('box2').classList.remove('box-hover')
-        document.getElementById('box1').classList.add('box1-bgImage')
-
+        document.getElementById('box2')?.classList.remove('box-hover')
+        document.getElementById('box1')?.classList.add('box1-bgImage')
     }
 
 
@@ -33,65 +31,82 @@ const AboutMe = () => {
 
     return (
 
-        <div id='about-me' className="w-[70%]  mx-auto pb-40">
+        <div id='about-me' className="max-w-[80%]  bg-transparent  mx-auto pb-40 overflow-hidden">
 
-            <div className="grid grid-cols-12">
+            <div className="grid  gap-8 grid-cols-12">
 
-                {/* col - 1  */}
-                <span className='text-xs'>
+                {/* row-1 */}
+                <span className='text-xs  md:text-lg'>
                     About
                 </span>
 
-
-
-                {/* col- 2 to 6  */}
-
-                <h1 className="w-30 col-span-3 text-5xl">
-                    Privileged Working With MENA's Brightest
+                <h1 className="w-30 col-span-11 text-5xl">
+                    Privileged Working With <br />INDIA's Brightest
                 </h1>
 
-                {/* col- 6 to 9  */}
 
-                <div className="grid col-span-3 gap-4 text-sm  grid-rows-3 h-[90%] font-mono font-thin ">
 
-                    <h5 className="w-25 row-start-2  float-right flex flex-col gap-4">
-                        <p className="text-xs leading-relaxed ">
-                            Over the past 15 years, I've had the privilege of collaborating with MENA titans like Gucci, Emirates NBD, MG Motors, Museum of the Future and an array of other visionary leaders.
-                        </p>
+                {/* row-2  */}
 
-                        <p className="text-xs leading-relaxed">
-                            From the ground-breaking to the game-changing, I've supported businesses to raise the bar of user experience.
-                        </p>
-
-                        <p className="text-xs leading-relaxed">
-                            Currently working at TCS Interactive as UX/UI Design Lead, Where I guide an exceptional talented team on a mission to craft astonishing solutions for TCS partners.
-
-                        </p>
-                    </h5>
+                <div>
+                    {/* empty */}
                 </div>
 
-                {/* col- 9 to 12  */}
+                <div className=" pt-12 col-span-10 min-w-[200px] max-w-[800px] mx-auto text-justify gap-4 text-sm   font-mono font-thin ">
+                    <div className="w-25 float-right flex flex-col gap-4 text-sm  md:text-md  3xl:text-lg leading-relaxed tracking-wide text-deco background2 ">
 
-                {/* hover:opacity-80 transition-opacity duration-500 ease-in-out  */}
+                        <p>
+                            <span className='bg-gray-200'> Over the past 15 years, I've had the privilege of collaborating with</span>
+                            <span className='bg-gray-200'>INDIA's titans like Gucci, Emirates NBD, MG Motors, Museum of the Future and an array of other visionary leaders.</span>
+                        </p>
 
-                <div id='profile' className={`col-start-10 col-span-3`}>
+                        <p> <span className='bg-gray-200'> From the ground-breaking to the game-changing, I've supported businesses to raise the bar of user experience.</span>  </p>
 
-                    <div id='box1' className='box box1-bgImage'
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                    // first image is bg image for box1
-                    >
-                        <div className='hid-box' id='box2'>
-                            {/* // second image is bg image for box2 */}
-                        </div>
+                        <p> <span className='bg-gray-200'>Currently working at TCS Interactive as UX/UI Design Lead, Where I guide an exceptional talented team on a mission to
+                            craft astonishing solutions for TCS partners.</span>
+                        </p>
+
                     </div>
+                </div>
 
+                <div className='col-span-1'>
+                    {/* empty */}
+                </div>
 
-
+                {/* row-3 */}
+                <div className='col-span-12 h-[20vh]'>
 
                 </div>
+
+
+
+
 
             </div>
+
+
+
+            <div id='profile hidden lg:block'>
+                <div id='box1 col-span-12' className='box box1-bgImage ' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+                    <div className='hid-box' id='box2' />
+                </div>
+            </div>
+
+            <div className='info relative -bottom-16 left-[24em] hidden lg:block'>
+                <h1> Unnati Chaudhary </h1>
+                <h2> UX/UI Design Lead </h2>
+                <h3> TCS Interactive </h3>
+                <h4> New Delhi, India</h4>
+            </div>
+
+
+
+
+
+            <img id='flower2' src={imageLinks[5].link} alt="flower-2" className="absolute top-[84em] -right-44  h-[30%] 
+                transition-transform duration-0  lg:h-[60%]  opacity-[10%] 
+                pointer-events-none overflow-hidden"  style={{ transform: `rotate(${scrollY / 30}deg)` }}
+            />
 
 
 

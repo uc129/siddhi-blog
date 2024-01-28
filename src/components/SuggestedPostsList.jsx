@@ -70,7 +70,7 @@ const SuggestedPostsList = ({ suggestedPosts }) => {
 
 export const handleMouseEnter = (e) => {
     let siblings = e.target.parentNode.children;
-    console.log(siblings, 'siblings');
+    // console.log(siblings, 'siblings');
 
 
 
@@ -83,7 +83,7 @@ export const handleMouseEnter = (e) => {
 
 export const handleMouseLeave = (e) => {
     let siblings = e.target.parentNode.children;
-    console.log(siblings, 'siblings');
+    // console.log(siblings, 'siblings');
 
 
 

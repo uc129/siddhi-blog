@@ -91,6 +91,10 @@
     animation: rotate 4s linear infinite;
 }
 
+.rotate-slow {
+    animation: rotate 14s linear infinite;
+}
+
 .rotateReverse {
     animation: rotateReverse 4s linear infinite;
 }

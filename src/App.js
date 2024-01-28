@@ -1,102 +1,43 @@
-// import logo from './logo.svg';
-
-
+// Desc: This is the main app file which contains all the routes and components
+//  Route Elements
+import Landing from './pages/landing';
 import BlogPage from './pages/blog';
 import PostDetailPage from './pages/postDetailPage';
-
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
-
-import Landing from './pages/landing';
-import AdminPage from './pages/admin';
-import CreatePost from './forms/create.post';
-
-
-
-const router = createBrowserRouter([
-  {
-    path: "*",
-    element: <h1>404</h1>
-  },
-  {
-    path: "/",
-    element: <Landing />
-  },
-  {
-    path: "/blog",
-    element: <BlogPage />
-  },
-
-  {
-    path: "/blog/post/:slug",
-    element: <PostDetailPage />
-
-  },
-  {
-    path: "/blog/new-post",
-    element: <CreatePost />
-  },
-
-
-  {
-    path: '/login',
-    element: <h1>Login</h1>
-  },
-  {
-    path: '/register',
-    element: <h1>Register</h1>
-  },
-  {
-    path: '/forgot-password',
-    element: <h1>Forgot Password</h1>
-  },
-  {
-    path: '/reset-password',
-    element: <h1>Reset Password</h1>
-  },
-  {
-    path: '/profile',
-    element: <h1>Profile</h1>
-  },
-
-  {
-    path: '/admin',
-    element: <AdminPage />
-  }
-
-
-
-
-
-
-
-
-
-
-]);
+import AdminPage from './pages/admin-pages/admin';
+import CreatePost from './components/admin-components/Post/create.post';
+import Category from './pages/admin-pages/category';
+import RegisterUser from './components/admin-components/auth/register';
+import LoginUser from './components/admin-components/auth/login';
+//Router
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+//Auth
+import { useAuth } from './utils/authProvider';
+export const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 
 function App() {
+  const { isAuthenticated } = useAuth();
+  // console.log('isAuthenticated from app page', isAuthenticated);
+  return <>
+    <BrowserRouter basename='/'>
+      <Routes>
+        <Route path='/' element={<Landing />} />
+        <Route path='/blog' element={<BlogPage />} />
+        <Route path='/blog/post' element={<PostDetailPage />} />
+        <Route path='/register' element={<RegisterUser />} />
+        <Route path='/login' element={<LoginUser />} />
+        <Route path='/admin' element={isAuthenticated ? <AdminPage /> : <Navigate to={'/login'} />} />
+        <Route path='/admin/new-post' element={isAuthenticated ? <CreatePost /> : <Navigate to={'/login'} />} />
+        <Route path='/admin/category' element={isAuthenticated ? <Category /> : <Navigate to={'/login'} />} />
+      </Routes>
+    </BrowserRouter>
+  </>
 
 
 
 
 
 
-
-  return (
-    <RouterProvider router={router}>
-      <div>
-
-      </div>
-
-    </RouterProvider>
-
-  );
 }
 
 export default App;

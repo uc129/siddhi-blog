@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
 
 
     return (
-        <div className="w-full h-full"
+        <div className="w-full h-full font-roboto"
         // style={{ background: `url('/assets/grainyFilter.svg')` }}
         >
 
