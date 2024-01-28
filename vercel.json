@@ -1,7 +1,7 @@
 {
     "headers": [
         {
-            "source": "http://blog-server.eba-9zeg5kgm.us-west-2.elasticbeanstalk.com/(.*)",
+            "source": "/api/(.*)",
             "headers": [
                 {
                     "key": "Access-Control-Allow-Credentials",
