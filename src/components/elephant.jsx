@@ -7,12 +7,11 @@ const Elephant = ({ scale, message, messageColor }) => {
 
     const [showDots, setShowDots] = useState(false)
 
-
     const { scrollY } = useContext(ScrollContext);
     useEffect(() => {
         const pathNumbers = Array.from(Array(51)).map((_, i) => {
             // eslint-disable-next-line
-            if (1 === 0) return
+            if (i === 0) return
             let path = document.getElementById(`elephant-${i}`);
             // eslint-disable-next-line
             if (!path) return

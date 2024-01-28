@@ -2,22 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap')
-
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@300&family=Climate+Crisis&family=Grape+Nuts&family=IBM+Plex+Sans+Devanagari:wght@300&family=Lemon&family=Noto+Sans+Devanagari:wght@100&family=Nunito:wght@300&family=Pacifico&family=Rajdhani:wght@300&family=Roboto:wght@300&display=swap');
-
-
-
-/* @font-face {
-  font-family: 'Shadows Into Light';
-  src: url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
-
-} */
-
 
 
 html,body {

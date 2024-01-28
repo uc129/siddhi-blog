@@ -1,12 +1,13 @@
 
 import PostHero from "../components/postHero"
-import Layout from "../components/layout"
 import React, { useEffect, useState } from 'react';
 import axiosClient from '../utils/axiosClient';
 import { useQuery } from 'react-query'
 import { useAuth } from "../utils/authProvider";
 import Elephant from "../components/elephant";
 import { FaRegArrowAltCircleUp } from "react-icons/fa";
+import NavBar from "../components/navbar";
+import Footer from "../components/footer";
 
 
 
@@ -45,7 +46,8 @@ const BlogPage = () => {
 
 
     return (
-        <Layout>
+        <>
+            <NavBar />
             <div className="header p-4 flex justify-between font-mono ">
                 {isAuthenticated && <div className="flex  gap-4" >
                     <a href="/admin?action=new-post" className="flex items-center justify-center  w-10  h-10 rounded-[50%] bg-white sticky top-0 hover:bg-orange-200 ">
@@ -141,8 +143,9 @@ const BlogPage = () => {
 
 
             </section>
+            <Footer />
 
-        </Layout>
+        </>
 
     )
 }
