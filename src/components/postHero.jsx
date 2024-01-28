@@ -1,4 +1,3 @@
-import { borderColours } from "../utils/gradients";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import axiosClient from "../utils/axiosClient";
@@ -18,7 +17,6 @@ const PostHero = ({ date, author, volume, postNumber, title, slug, bgImage }) =>
     let randomGradient = Gradients[randomGradientIndex];
     let randomIllustration = illustrationLinks[randomIllustrationIndex];
 
-    // let gradientColour = borderColours[randomGradientIndex];
 
     const [image, setImage] = useState([])
     const [illustration, setIllustration] = useState({})
