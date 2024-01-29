@@ -41,7 +41,7 @@ const Category = () => {
         if (categories.length === 0) return;
         let category = categories.filter((category) => category.name === categoryName)
         if (category.length === 0) return;
-        console.log('category', category);
+        // console.log('category', category);
         setCurrentCategory(category[0])
     }, [categoryName, categories])
 
@@ -58,7 +58,7 @@ const Category = () => {
         return <span>Error: {error.message}</span>
     }
 
-    console.log(currentCategory);
+    // console.log(currentCategory);
 
 
     const handleSearch = (e) => {

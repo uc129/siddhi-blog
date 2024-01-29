@@ -38,13 +38,13 @@ const CreateTags = () => {
         let value = e.target.value;
         setErrors({ ...errors, [name]: '' })
         setFormData({ ...formData, [name]: value })
-        console.log(formData);
+        // console.log(formData);
     }
     const handleSelection = (e) => {
         let value = e.target.value;
         if (value === 'active') setActive(true)
         else setActive(false)
-        console.log(active);
+        // console.log(active);
     }
 
     const validateForm = () => {

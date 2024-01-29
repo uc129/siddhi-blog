@@ -22,7 +22,7 @@ const Logout = () => {
     const logout = async () => {
         return await axiosClient.post('/auth/logout')
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
             })
             .catch((err) => console.log(err))
     }

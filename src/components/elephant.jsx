@@ -9,15 +9,12 @@ const Elephant = ({ scale, message, messageColor }) => {
 
     useEffect(() => {
         Array.from(Array(51)).map((_, i) => {
-            console.log(i);
             if (i === 0) return
             let path = document.getElementById(`elephant-${i}`);
             if (!path) return
             let pathLength = path.getTotalLength();
             path.style.strokeDasharray = pathLength;
             path.style.strokeDashoffset = pathLength;
-
-            console.log(pathLength);
             return path
         });
     })

@@ -117,7 +117,7 @@ const RegisterUser = () => {
 
         // window.location.href = `/admin?register=true&&user=${user.id}`
 
-        console.log('user', user);
+        // console.log('user', user);
     }, [user])
 
 

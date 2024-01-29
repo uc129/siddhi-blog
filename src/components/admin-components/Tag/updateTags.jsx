@@ -27,7 +27,7 @@ const UpdateTag = ({ currentTag, getCurrent }) => {
         setCurrent(currentTag)
     }, [currentTag])
 
-    console.log('current', current);
+    // console.log('current', current);
 
 
 
@@ -37,7 +37,7 @@ const UpdateTag = ({ currentTag, getCurrent }) => {
         form.append('name', formData.name)
         form.append('description', formData.description)
         form.append('status', formData.status)
-        console.log('form data', formData);
+        // console.log('form data', formData);
         await axiosClient.post(`/blog/tags/update/${formData._id}`, formData).then(() => setUpdated(true)).catch(err => console.log(err))
     });
 

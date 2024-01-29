@@ -43,7 +43,7 @@ const PostDetail = ({ post }) => {
     useQuery('images', () => { return imageIds.map(async (id) => { return await fetchImage(id) }) },
         {
             onSuccess: (data) => {
-                console.log('image received');
+                // console.log('image received');
             }
         }
     )
@@ -74,7 +74,7 @@ const PostDetail = ({ post }) => {
 
             {/* Toolbar Sm Screen */}
             <div className=' flex lg:hidden'>
-                <PostSidebarTools post={post} getMetaDetails={(metaData) => setMeta({ ...meta, ...metaData })} />}
+                <PostSidebarTools post={post} getMetaDetails={(metaData) => setMeta({ ...meta, ...metaData })} />
             </div>
 
 
