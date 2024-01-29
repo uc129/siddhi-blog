@@ -31,6 +31,7 @@ module.exports = {
       },
       animation: {
         fadeIn: 'fadeIn 1s ease-in-out forwards',
+        dash: 'dash 2s linear forwards',
       },
       animationDuration: {
         '300': '300ms',

@@ -1,30 +1,25 @@
 import '../styles/elephant.css'
-import { useSpring, animated } from '@react-spring/web'
-import { ScrollContext } from '../utils/scrollObserver'
-import { useContext, useEffect, useState } from 'react'
+import '../styles/animations.css'
+import { animated } from '@react-spring/web'
+import { useEffect, useState } from 'react'
 
 const Elephant = ({ scale, message, messageColor }) => {
 
     const [showDots, setShowDots] = useState(false)
 
-    const { scrollY } = useContext(ScrollContext);
     useEffect(() => {
-        const pathNumbers = Array.from(Array(51)).map((_, i) => {
-            // eslint-disable-next-line
+        Array.from(Array(51)).map((_, i) => {
+            console.log(i);
             if (i === 0) return
             let path = document.getElementById(`elephant-${i}`);
-            // eslint-disable-next-line
             if (!path) return
             let pathLength = path.getTotalLength();
             path.style.strokeDasharray = pathLength;
             path.style.strokeDashoffset = pathLength;
+
+            console.log(pathLength);
             return path
         });
-        const paths = pathNumbers.filter(path => path !== undefined);
-
-        paths.forEach(path => {
-            path.setAttribute('style', 'animation: dash 10s linear infinite alternate-reverse;')
-        })
     })
 
     useEffect(() => {
@@ -33,15 +28,9 @@ const Elephant = ({ scale, message, messageColor }) => {
     }, [message])
 
 
-    let progress = 0;
-    progress = Math.min(1, scrollY / window.clientHeight);
-    const springProps = useSpring({
-        transform: `translateY(${progress}%)`,
-    });
-
 
     return (
-        <div className='flex flex-col justify-center items-center  max-h-screen max-w-screen' style={{ transform: `scale(${scale ? scale : '0.5'})` }}>
+        <div className='flex flex-col justify-center items-center  max-h-screen max-w-screen' style={{ transform: `scale(${scale ? scale : '0.5'})`, animation: 'dashoffset linear 2s infinite' }}>
 
             {
                 message &&
@@ -86,7 +75,6 @@ const Elephant = ({ scale, message, messageColor }) => {
                         {/*  */}
                         {/* trunk */}
                         <animated.path
-                            style={springProps}
                             id='elephant-10' className="cls-2" d="M22.96,51.34c-1.38,6.05-1.45,12.39-2.13,18.6-.11.95-.37,1.89-.71,3.55-2.79-3.44-4.98-6.56-7.59-9.26-2.63-2.71-2.24-5.3-.98-8.4,2-4.92,3.71-9.96,5.48-14.97.29-.84.32-1.82.25-2.71-.13-1.66-.62-3.3-.61-4.95.03-8.02-4.58-13.57-9.79-18.82-1.58-1.59-1.63-3.28-.17-6.1,4.58,5.2,8.76,9.95,12.94,14.69,2.34,9.31,5.58,18.39,3.31,28.37Z" />
 
                         <animated.path
