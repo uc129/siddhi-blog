@@ -7,7 +7,7 @@ import { useContext, useRef } from "react"
 import { ScrollContext } from "../utils/scrollObserver"
 
 
-import { imageLinks } from "../utils/imageLinks"
+// import { imageLinks } from "../utils/imageLinks"
 import PillarContainer from "../utils/ThreeJS/pillarContainer"
 // import SpiderContainer from "../utils/ThreeJS/spider/container"
 // import Elephant from "../components/elephant"
@@ -16,11 +16,11 @@ import PillarContainer from "../utils/ThreeJS/pillarContainer"
 const Landing = () => {
 
     // window.onload = () => ThreeD()
+    const refContainer = useRef(null)
 
     const { scrollY } = useContext(ScrollContext)
     // console.log(scrollY, 'scrollY from landing');
 
-    const refContainer = useRef(null)
     const { current: elContainer } = refContainer;
 
     let progress = 0;

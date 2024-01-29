@@ -36,7 +36,7 @@ const PostHero = ({ date, author, volume, postNumber, title, slug, bgImage }) =>
     useEffect(() => {
         if (imageFound) return
         else setIllustration(randomIllustration)
-        console.log('illustration', randomIllustration);
+        // console.log('illustration', randomIllustration);
     }, [imageFound, randomIllustration])
 
 
