@@ -35,12 +35,11 @@ const Landing = () => {
     return (
         <div ref={refContainer} className="w-screen h-full bg-cover bg-white font-hero overflow-hidden" >
 
-            <div className="flex">
+            {/* <div className="flex">
                 <img src={imageLinks[7].link} alt="motif1" className="absolute top-0 left-0 h-[100%] transition-all duration-0 ease-in-out lg:h-[140%]  opacity-[30%] pointer-events-none overflow-hidden "
                     style={{ transform: `rotate(${progress / 8 * 360}deg)` }}
                 />
-                {/* <img src={imageLinks[2].link} alt="motif2" className="absolute top-0 left-0 h-[40%]  opacity-[10%] pointer-events-none overflow-hidden" /> */}
-            </div>
+            </div> */}
 
 
 
