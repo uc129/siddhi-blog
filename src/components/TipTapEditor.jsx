@@ -12,7 +12,7 @@ import FontFamily from '@tiptap/extension-font-family'
 import Underline from '@tiptap/extension-underline'
 import Link from '@tiptap/extension-link'
 import Image from '@tiptap/extension-image'
-import { isSafari } from '../App'
+import { isSafari } from '../App/App'
 
 import React from 'react'
 

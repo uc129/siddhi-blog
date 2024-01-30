@@ -1,17 +1,17 @@
 // Desc: This is the main app file which contains all the routes and components
 //  Route Elements
-import Landing from './pages/landing';
-import BlogPage from './pages/blog';
-import PostDetailPage from './pages/postDetailPage';
-import AdminPage from './pages/admin-pages/admin';
-import CreatePost from './components/admin-components/Post/create.post';
-import Category from './pages/admin-pages/category';
-import RegisterUser from './components/admin-components/auth/register';
-import LoginUser from './components/admin-components/auth/login';
+import Landing from '../pages/landing';
+import BlogPage from '../pages/blog';
+import PostDetailPage from '../pages/postDetailPage';
+import AdminPage from '../pages/admin-pages/admin';
+import CreatePost from '../components/admin-components/Post/create.post';
+import Category from '../pages/admin-pages/category';
+import RegisterUser from '../components/admin-components/auth/register';
+import LoginUser from '../components/admin-components/auth/login';
 //Router
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 //Auth
-import { useAuth } from './utils/authProvider';
+import { useAuth } from '../utils/authProvider';
 export const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 
