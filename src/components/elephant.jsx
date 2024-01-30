@@ -8,7 +8,7 @@ const Elephant = ({ scale, message, messageColor }) => {
     const [showDots, setShowDots] = useState(false)
 
     useEffect(() => {
-        Array.from(Array(51)).map((_, i) => {
+        let array = Array.from(Array(51)).map((_, i) => {
             if (i === 0) return
             let path = document.getElementById(`elephant-${i}`);
             if (!path) return
@@ -17,6 +17,7 @@ const Elephant = ({ scale, message, messageColor }) => {
             path.style.strokeDashoffset = pathLength;
             return path
         });
+        if (!array) return
     })
 
     useEffect(() => {
