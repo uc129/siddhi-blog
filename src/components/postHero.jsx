@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import axiosClient from "../utils/axiosClient";
 
 import { Gradients } from "../utils/gradients";
@@ -11,6 +11,8 @@ import Elephant from "./elephant";
 
 const PostHero = ({ date, author, volume, postNumber, title, slug, bgImage }) => {
 
+
+
     let randomGradientIndex = Math.floor(Math.random() * Gradients.length);
     let randomIllustrationIndex = Math.floor(Math.random() * illustrationLinks.length);
 
@@ -21,28 +23,29 @@ const PostHero = ({ date, author, volume, postNumber, title, slug, bgImage }) =>
     const [image, setImage] = useState([])
     const [illustration, setIllustration] = useState({})
     const [imageFound, setImageFound] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
 
-
-    const { isLoading, isError } = useQuery('images', async () => { return await fetchImage(bgImage) },
-        { onSuccess: () => setImageFound(true) })
 
     const fetchImage = async (id) => {
+        if (!id) return
+        console.log('fetching image');
         let data;
-        await axiosClient.get(`/blog/images/${id}`).then((res) => { data = res.data; setImage(data.url) }).catch((err) => console.log(err))
+        setIsLoading(true)
+        await axiosClient.get(`/blog/images/id/${id}`).then((res) => { data = res.data; setImage(data.url); if (data.url) { setImageFound(true); setIsLoading(false) } }).catch((err) => console.log(err))
         return data
     }
 
     useEffect(() => {
         if (imageFound) return
+        else fetchImage(bgImage)
+        if (illustration.link) return
         else setIllustration(randomIllustration)
-        // console.log('illustration', randomIllustration);
-    }, [imageFound, randomIllustration])
+    }, [imageFound, randomIllustration, bgImage, illustration.link])
 
 
     if (isLoading) return <Elephant scale={'0.4'} />
 
-    if (isError) return <Elephant scale={'0.4'} message={'Error'} messageColor={'text-red-400'} />
 
 
 
@@ -57,7 +60,7 @@ const PostHero = ({ date, author, volume, postNumber, title, slug, bgImage }) =>
                 {illustration && <img className=" object-cover object-top h-full w-full grayscale opacity-80 " src={illustration.link} alt={illustration.name} />}
 
                 <img src="/assets/grainyFilter.svg" alt="grainyFilter" className="absolute top-0 left-0 w-full h-full object-cover grayscale opacity-55" />
-                <img src="assets/SVG/logo2.svg" alt="logo" className="absolute bottom-4 right-4 w-12 grayscale" />
+                <img src="assets/SVG/logo.svg" alt="logo" className="absolute bottom-4 right-4 w-12 grayscale" />
 
 
                 <div className="content  w-full h-[70%] min-h-[300px] flex flex-col absolute py-8 px-2  top-0 ">
@@ -82,7 +85,7 @@ const PostHero = ({ date, author, volume, postNumber, title, slug, bgImage }) =>
                         </div>
 
                         <div className="logo flex items-center  md:gap-8   px-1  py-2 2xl:p-4 ">
-                            <p className="company text-xl md:text-[30px] 2xl:text-[44px] "> The Sunday Drip </p>
+                            <p className="company text-xl md:text-[30px] 2xl:text-[44px] font-hero "> The Sunday Drip </p>
                         </div>
 
                         <div className={` w-[90%] px-1  2xl:px-4 `}>

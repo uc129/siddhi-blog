@@ -28,7 +28,7 @@ const BlogPage = () => {
         const { data } = await axiosClient.get('/blog/posts/all').catch((err) => console.log(err))
         if (!data) return;
         const sortedPosts = data.sort((a, b) => new Date(b.dates.initiated) - new Date(a.dates.initiated));
-        setTimeout(() => setPosts(sortedPosts), 3000)
+        setTimeout(() => setPosts(sortedPosts), 400)
         return data
     }
 
@@ -39,7 +39,7 @@ const BlogPage = () => {
     }, [posts, postLimit, postLimitNumber])
 
     if (!posts.length > 0 || isLoading) {
-        return <Elephant scale={'0.4'} />
+        return <Elephant scale={'0.5'} />
     }
 
     if (isError) return <span>Error: {error.message}</span>
@@ -65,9 +65,11 @@ const BlogPage = () => {
 
 
             <section className="wrapper max-w-screen h-full flex justify-between overflow-scroll scroll-smooth p-2  ">
-                <h1 id='recent-heading' className="posts pt-14 pb-4 underline underline-offset-4"> Recent Posts </h1>
 
-                <div className=" w-[60%] h-full">
+                <div className=" w-[60%] pl-10 h-full">
+
+                    <h1 id='recent-heading' className="posts underline underline-offset-4 -mb-10"> Recent Posts </h1>
+
                     {limitedPosts && limitedPosts.map((post, index) => {
                         return (
                             // <div key={post._id} className={`${index % 2 === 0 ? 'text-black' : 'text-white'}`}>

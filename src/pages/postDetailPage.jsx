@@ -5,6 +5,7 @@ import PostDetail from "../components/admin-components/Post/PostDetail";
 import { useState } from "react";
 import axiosClient from "../utils/axiosClient";
 import { useQuery } from "react-query";
+import Elephant from "../components/elephant";
 
 const PostDetailPage = () => {
 
@@ -24,7 +25,7 @@ const PostDetailPage = () => {
     }
 
     if (isLoading) {
-        return <span>Loading...</span>
+        return <Elephant scale={0.4} />
     }
 
     if (isError) {
@@ -39,7 +40,7 @@ const PostDetailPage = () => {
             {/* <img src='/assets/grainyFilter.svg' alt='grainyFilter' className="absolute top-0 left-0 w-full h-full object-cover grayscale" /> */}
             <NavBar />
             <PostDetail post={post} />
-            <SuggestedPostsList />
+            <SuggestedPostsList post={post} />
             <Footer />
 
         </div>

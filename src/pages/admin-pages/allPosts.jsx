@@ -1,8 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
-import axiosClient from '../../../utils/axiosClient';
+import axiosClient from '../../utils/axiosClient';
 import { useQuery } from 'react-query'
-import PostBox from './PostBox';
+import PostBox from '../../components/admin-components/Post/PostBox';
+import Elephant from '../../components/elephant';
 
 const AllPosts = () => {
 
@@ -28,7 +29,7 @@ const AllPosts = () => {
     }, [posts])
 
     if (isLoading) {
-        return <span>Loading...</span>
+        return <Elephant scale={0.5} />
     }
 
     if (isError) {
@@ -41,9 +42,9 @@ const AllPosts = () => {
             <h1>All Posts</h1>
             {posts && posts.map((post) => {
                 return (
-                    <div className="post flex flex-col" key={post._id}>
-                        <PostBox post={post} />
-                    </div>
+
+                    <PostBox post={post} />
+
                 )
             })
             }

@@ -1,6 +1,6 @@
 // Desc: This is the main app file which contains all the routes and components
 //  Route Elements
-import Landing from '../pages/landing';
+// import Landing from '../pages/landing';
 import BlogPage from '../pages/blog';
 import PostDetailPage from '../pages/postDetailPage';
 import AdminPage from '../pages/admin-pages/admin';
@@ -12,6 +12,7 @@ import LoginUser from '../components/admin-components/auth/login';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 //Auth
 import { useAuth } from '../utils/authProvider';
+import AnimatedLanding from '../pages/landing-animated';
 export const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 
@@ -21,7 +22,7 @@ function App() {
   return <>
     <BrowserRouter basename='/'>
       <Routes>
-        <Route path='/' element={<Landing />} />
+        <Route path='/' element={<AnimatedLanding />} />
         <Route path='/blog' element={<BlogPage />} />
         <Route path='/blog/post' element={<PostDetailPage />} />
         <Route path='/register' element={<RegisterUser />} />

@@ -4,6 +4,7 @@ import axiosClient from "../../utils/axiosClient";
 import { useQuery } from 'react-query'
 import { useEffect, useState } from "react";
 import UpdateTag from "../../components/admin-components/Tag/updateTags";
+import Elephant from "../../components/elephant";
 
 
 
@@ -51,14 +52,13 @@ const Tags = () => {
 
     useEffect(() => {
         if (searchTerm === '') return;
-        // console.log(tags);
         if (tags.length === 0) return;
         let search = tags.filter((tag) => tag.name.toLowerCase().includes(searchTerm.toLowerCase()))
         setSearchResults(search.slice(0, 3))
     }, [searchTerm, tags])
 
     if (isLoading) {
-        return <span>Loading...</span>
+        return <Elephant scale={'0.5'} />
     }
 
     if (isError) {

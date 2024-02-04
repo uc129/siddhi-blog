@@ -63,7 +63,7 @@ const PostSidebarTools = ({ getMetaDetails }) => {
 
 
     return (
-        <div className="tools mx-auto flex lg:flex-col">
+        <div className="tools mx-auto flex">
 
             <button id='like' onClick={handleButtonClick}
                 className={`${styles.toolsButton} ${meta.like ? 'text-red-500' : 'text-black'}

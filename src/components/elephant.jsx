@@ -8,16 +8,18 @@ const Elephant = ({ scale, message, messageColor }) => {
     const [showDots, setShowDots] = useState(false)
 
     useEffect(() => {
-        let array = Array.from(Array(51)).map((_, i) => {
-            if (i === 0) return
+        // eslint-disable-next-line 
+        Array.from(Array(51)).map((_, i) => {
+            if (i === 0) return null
+
             let path = document.getElementById(`elephant-${i}`);
-            if (!path) return
+            if (!path) return null
             let pathLength = path.getTotalLength();
             path.style.strokeDasharray = pathLength;
             path.style.strokeDashoffset = pathLength;
-            return path
+            return null
         });
-        if (!array) return
+
     })
 
     useEffect(() => {
@@ -28,7 +30,7 @@ const Elephant = ({ scale, message, messageColor }) => {
 
 
     return (
-        <div className='flex flex-col justify-center items-center  max-h-screen max-w-screen' style={{ transform: `scale(${scale ? scale : '0.5'})`, animation: 'dashoffset linear 2s infinite' }}>
+        <div className='flex flex-col  justify-center items-center  max-h-screen max-w-screen' style={{ transform: `scale(${scale ? scale : '0.5'})`, animation: 'dashoffset linear 2s infinite' }}>
 
             {
                 message &&

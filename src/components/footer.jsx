@@ -1,19 +1,31 @@
 import { MdOutlineMailOutline } from "react-icons/md";
 import { Carousel } from "./Carousel";
 import CarouselItem from "./carouselItem";
+import { useQuery } from "react-query";
+import axiosClient from "../utils/axiosClient";
+import { useState } from "react";
 
-const images = [
-    <img src="/assets/siddhi-art/hugo.jpg" className="h-80 pointer-events-none" alt="" />,
-    <img src="/assets/siddhi-art/art1.jpg" className="h-80 pointer-events-none" alt="" />,
-    <img src="/assets/siddhi-art/art2.jpg" className="h-80 pointer-events-none" alt="" />,
-    <img src="/assets/siddhi-art/art3.jpg" className="h-80 pointer-events-none" alt="" />,
-    <img src="/assets/siddhi-art/art4.jpg" className="h-80 pointer-events-none" alt="" />,
-    <img src="/assets/siddhi-art/art5.jpg" className="h-80 pointer-events-none" alt="" />,
-    <img src="/assets/siddhi-art/art6.jpg" className="h-80 pointer-events-none" alt="" />,
-    <img src="/assets/siddhi-art/art7.jpg" className="h-80 pointer-events-none" alt="" />,
-]
+
+
+
+
+
 
 const Footer = () => {
+
+    useQuery('images', fetchImages)
+    const [images, setImages] = useState([])
+
+    async function fetchImages() {
+        const { data } = await axiosClient.get(`/blog/images/search?category=post`).then((res) => setImages(res.data))
+            .catch((err) => console.log(err))
+        if (!data) return;
+        return data
+    }
+
+
+
+
 
     return (
         <footer className="flex flex-col overflow-hidden border-t-2 border-black border-collapse ">
@@ -30,16 +42,17 @@ const Footer = () => {
                 </ul>
             </div>
 
-            <div className="flex px-4 gap-8 h-80 w-full grayscale pb-1">
-                <Carousel >
-                    {images.map((image, index) => (
-                        <CarouselItem key={index} >
-                            {image}
-                        </CarouselItem>
-                    ))}
-                </Carousel>
-            </div>
-
+            {images.length > 0 &&
+                <div className="flex px-4 gap-8 h-80 w-full grayscale pb-1">
+                    <Carousel >
+                        {images.map((image, index) => (
+                            <CarouselItem key={index} >
+                                <img src={image.url} alt={image.name} className="w-full h-full object-cover" />
+                            </CarouselItem>
+                        ))}
+                    </Carousel>
+                </div>
+            }
         </footer>
     )
 

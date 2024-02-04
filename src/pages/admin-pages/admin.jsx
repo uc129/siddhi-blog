@@ -4,7 +4,7 @@ import { useState } from "react"
 import Category from "./category"
 import CreatePost from "../../components/admin-components/Post/create.post"
 import Tags from "./tags"
-import AllPosts from "../../components/admin-components/Post/allPosts"
+import AllPosts from "./allPosts"
 
 import { useAuth } from "../../utils/authProvider"
 

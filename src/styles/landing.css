@@ -1,0 +1,67 @@
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10em);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-10em);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes flowers{
+    0% {
+        transform: translateY(5em);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(-5);
+        opacity: 1;
+    }
+}
+
+.fadeinUp {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.fadeInDownDelayed {
+    animation: fadeInDown 1s ease-in-out 1s;
+}
+
+.fadeInUpFlower{
+    animation: flowers 1s ease-in-out 1s;
+}
+
+.bugs{
+    animation: fadeIn 1s ease-in-out 2s;
+}
+
+.scrollButton{
+    animation: fadeIn 1s ease-in-out 3s;
+}
+
+
+

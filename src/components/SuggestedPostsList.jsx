@@ -1,27 +1,39 @@
-import { PostData } from "../data/postData"
-// import PropTypes from 'prop-types';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axiosClient from "../utils/axiosClient";
 
 import '../styles/underline.css'
+import Elephant from "./elephant";
 
-// .underlineAnimate {
-//     background-size: 100% 0.1em, 0 0.1em;
-//     background-position: 100% 100%, 0 100%;
-//     background-repeat: no-repeat;
-//     transition: background-size 400ms;
-//   }
-
-//   .underlineAnimate:hover,
-//   .underlineAnimate:focus {
-//     background-size: 0 0.1em, 100% 0.1em;
-//   }
+const SuggestedPostsList = ({ post }) => {
 
 
+    const [currentPost] = useState(post)
+    const [suggestedPosts, setSuggestedPosts] = useState([])
 
-const SuggestedPostsList = ({ suggestedPosts }) => {
 
-    const [hover, setHover] = useState(false);
-    console.log(hover, 'hover');
+    // let randomTag = currentPost.tags[Math.floor(Math.random() * currentPost.tags?.length)]
+
+    const fetchPostByCategory = async () => {
+        await axiosClient.get(`/blog/posts/category/${currentPost.category}`).then((res) => setSuggestedPosts((suggestedPosts) => [...suggestedPosts, res.data]))
+            .catch((err) => console.log(err))
+        return
+    }
+    // const fetchPostByTag = async () => {
+    //     await axiosClient.get(`/blog/posts/tag/${randomTag}`).then((res) => setSuggestedPosts((suggestedPosts) => [...suggestedPosts, res.data]))
+    //         .catch((err) => console.log(err))
+    //     return
+    // }
+
+    useEffect(() => {
+        if (suggestedPosts.length > 0) return
+        fetchPostByCategory()
+    })
+
+
+
+    if (!post) return <div> <Elephant message={'Loading'} /> </div>
+    // console.log(post);
+
 
 
 
@@ -30,68 +42,28 @@ const SuggestedPostsList = ({ suggestedPosts }) => {
 
         <div className="wrapper w-full p-20 pb-40 bg-white text-black border-t-2 border-pink-300">
             <div className="container  flex  gap-4">
-                <h1 className=" min-w-[20%] text-3xl  text-left font-bold p-10 underline underline-offset-2">
-                    Also Read:
-                </h1>
-
+                <h1 className=" min-w-[20%] text-3xl  text-left font-bold p-10 underline underline-offset-2">Also Read:</h1>
                 <ul className="posts pt-5 flex flex-col justify-center">
-                    {PostData.map((post, index) => {
-
+                    {suggestedPosts.slice(0, 3).map((post, index) => {
                         return (
-
-
                             <li
                                 key={index}
                                 id='suggested-post'
-                                onClick={() => window.location.href = `/blog/post/${post.slug}`}
-                                onMouseEnter={(e) => { handleMouseEnter(e); setHover(true) }}
-                                onMouseLeave={(e) => { handleMouseLeave(e); setHover(false) }}
+                                onClick={() => window.location.href = `/blog/post?id=${currentPost._id}`}
                                 className="  grid grid-cols-12 gap-4 items-center pb-4 underlineAnimateReverse cursor-pointer">
-
                                 <div className={`col-span-8  items-center pointer-events-none `}>
-                                    <span className="text-xs"> {post.date} </span>
-                                    <h4 > {post.title}  </h4>
+                                    <span className="text-xs"> {currentPost.dates?.initiated} </span>
+                                    <h4 > {currentPost.title}  </h4>
                                 </div>
-                                <span className="text-black text-sm pt-8 pointer-events-none">  {post.author}   </span>
+
+                                <span className="text-black text-sm pt-8 pointer-events-none">  {currentPost.author}   </span>
                             </li>
-
-
                         )
-
-
                     })}
                 </ul>
             </div>
         </div >
     )
-}
-
-
-
-export const handleMouseEnter = (e) => {
-    let siblings = e.target.parentNode.children;
-    // console.log(siblings, 'siblings');
-
-
-
-
-    for (let i = 0; i < siblings.length; i++) {
-        if (siblings[i] === e.target) continue;
-        siblings[i].style.opacity = 0.2;
-    }
-}
-
-export const handleMouseLeave = (e) => {
-    let siblings = e.target.parentNode.children;
-    // console.log(siblings, 'siblings');
-
-
-
-
-    for (let i = 0; i < siblings.length; i++) {
-        if (siblings[i] === e.target) continue;
-        siblings[i].style.opacity = 1;
-    }
 }
 
 

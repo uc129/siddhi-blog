@@ -6,7 +6,6 @@ import axiosClient from '../../../utils/axiosClient';
 import { Carousel } from '../../Carousel';
 import CarouselItem from '../../carouselItem';
 
-import { RxHamburgerMenu } from "react-icons/rx";
 
 
 
@@ -19,7 +18,7 @@ const PostDetail = ({ post }) => {
 
 
 
-    const [showMenu, setShowMenu] = useState(false);
+    // const [showMenu, setShowMenu] = useState(false);
     const imageIds = post.images;
     const [images, setImages] = useState([])
     const [meta, setMeta] = useState({
@@ -35,10 +34,10 @@ const PostDetail = ({ post }) => {
 
     // const [transformedImageUrls, setTransformedImagesUrls] = useState([])
 
-    const handleMenuClick = (e) => {
-        e.preventDefault();
-        setShowMenu(!showMenu)
-    }
+    // const handleMenuClick = (e) => {
+    //     e.preventDefault();
+    //     setShowMenu(!showMenu)
+    // }
 
     useQuery('images', () => { return imageIds.map(async (id) => { return await fetchImage(id) }) },
         {
@@ -50,7 +49,7 @@ const PostDetail = ({ post }) => {
 
     const fetchImage = async (id) => {
         let data;
-        await axiosClient.get(`/blog/images/${id}`)
+        await axiosClient.get(`/blog/images/id/${id}`)
             .then((res) => { data = res.data; setImages((images) => [...images, data]) })
             .catch((err) => console.log(err))
         return data
@@ -69,109 +68,63 @@ const PostDetail = ({ post }) => {
 
     let content = post.content;
 
+
+
     return (
         <div className=' wrapper min-w[100vw] gap-12 pt-12'>
 
             {/* Toolbar Sm Screen */}
-            <div className=' flex lg:hidden'>
+            <div className=' flex '>
                 <PostSidebarTools post={post} getMetaDetails={(metaData) => setMeta({ ...meta, ...metaData })} />
             </div>
 
-
             <div className="content flex gap-16">
-                {/* <div className="tools flex flex-col items-center  pt-44">
-                    {showMenu && <PostSidebarTools post={post} getMetaDetails={(metaData) => setMeta({ ...meta, ...metaData })} />}
-                </div> */}
                 <div className=" flex flex-col gap-4 w-full">
-
                     <div className='flex p-4'>
-                        {/* Toolbar Lg Screen */}
-                        <div className='hidden lg:block'>
-                            <button onClick={handleMenuClick} className='menu hover:bg-transparent bg-transparent p-4 border-0'>
-                                <RxHamburgerMenu color='black' size={30} className='pointer-events-none' />
-                            </button>
-                            {showMenu && <PostSidebarTools post={post} getMetaDetails={(metaData) => setMeta({ ...meta, ...metaData })} />}
-                        </div>
-
-
-
                         {/* Post Content and Image col-11 */}
-                        <div className="w-full flex flex-col-reverse  lg:flex-row">
+                        <div className="w-full min-h-[400px] flex flex-col-reverse  lg:flex-row">
 
-                            {/* Content */}
+
                             <div className=" mx-auto pb-24 w-full min-h-[500px] bg-sky-200 pl-10 pt-16">
+                                {/* meta */}
+                                <h1 className='text-2xl md:text-5xl pb-10 font-bebas font-bold text-center tracking-widest' >{post.title} </h1>
 
-                                <div className="meta text-xs">
-                                    <h1 className='text-2xl md:text-5xl pb-10 font-bebas font-bold text-center tracking-widest' >{post.title} </h1>
+                                <div className="meta flex text-xs pb-14 justify-center gap-24">
                                     <p className='text-gray-500 flex gap-4'>
                                         <span>Written By:</span>
                                         {post.author ?
                                             <a href={`/blog/author?author${post.author.name}`} className='underline underline-offset-1'>
-                                                {post.author ? post.author : 'Unnati Chaudhary'}
+                                                {post.author.name}
                                             </a>
-                                            : 'Unnati Chaudhary'}
+                                            : <span className='underline underline-offset-1'>Unnati Chaudhary</span>}
                                     </p>
 
                                     <p className='text-gray-500 flex gap-4'>
                                         <span>Published On:</span>
-                                        {post.dates && post.dates.initiated ?
+                                        {post.dates && post.dates?.initiated ?
                                             <span className='underline underline-offset-1'>
-                                                {post.dates.initiated}
+                                                {post.dates?.initiated}
                                             </span>
                                             : '23 Jan 2024'}
                                     </p>
-
                                 </div>
-
+                                {/* content */}
                                 <div className="content w-1/2 min-w-[500px]">
                                     <div dangerouslySetInnerHTML={{ __html: content }} />
                                 </div>
 
                             </div>
 
-
-
                             {/* Single Image */}
-                            <div id='images-container' className=' min-w-[30em]  bg-orange-200'>
+                            <div id='images-container' className='  bg-orange-200'>
                                 {images && images.length !== 0 &&
                                     <div className="h-full object-cover">
-                                        <img src={primaryImage.url} alt="primary" className='w-full  object-cover' />
+                                        <img src={primaryImage.url} alt="primary" className='h-full max-h-[80em]  object-cover' />
                                     </div>
                                 }
                             </div>
-
-
-
-
                         </div>
                     </div>
-
-                    {/* Row 2 */} {/* Carousel */}
-                    <div className=''>
-
-                    </div>
-
-
-
-                    {/* {
-                    transformedImageUrls && transformedImageUrls.length !== 0 &&
-
-
-                    <Carousel className={'bgwhite text-white  py-10 lg:py-20'} >
-                        {
-                            transformedImageUrls.map((url, index) => {
-                                return (
-                                    <CarouselItem key={index} index={index}>
-                                        <img src={url} alt="" className='h-full w-[70vw]  object-cover mx-auto' />
-                                    </CarouselItem>
-                                )
-                            }
-                            )}
-
-                    </Carousel>
-                } */}
-
-
 
                 </div>
             </div>
@@ -183,27 +136,19 @@ const PostDetail = ({ post }) => {
 
                     <>
                         <Carousel className={'bgwhite text-white  py-10 lg:py-20'} >
-                            {
-                                images.map((image, index) => {
-                                    return (
-                                        <CarouselItem key={index} index={index}>
-                                            <img src={image.url} alt="" className='h-[80vh]  object-contain mx-auto' />
-                                        </CarouselItem>
-                                    )
-                                }
-                                )}
+                            {images.map((image, index) => {
+                                return (
+                                    <CarouselItem key={index} index={index}>
+                                        <img src={image.url} alt="" className='h-[80vh]  object-contain mx-auto' />
+                                    </CarouselItem>
+                                )
+                            })}
 
 
                         </Carousel>
                     </>
                 }
             </div>
-
-
-
-
-
-
 
         </div>
 

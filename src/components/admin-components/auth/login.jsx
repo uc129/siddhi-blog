@@ -5,6 +5,8 @@ import { useAuth } from '../../../utils/authProvider';
 import axiosClient from '../../../utils/axiosClient';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import Elephant from '../../elephant';
+import axios from 'axios';
 
 const styles = {
     input: "border-2 border-gray-600 text-[#FFFDD0] placeholder:text-gray-600 w-full p-2 px-4 bg-transparent rounded-xl focus:outline-none focus:border-purple-500  ",
@@ -31,15 +33,19 @@ const LoginUser = () => {
     const auth = useAuth();
 
     const { isAuthenticated } = useAuth()
-
-    const loginMutation = useMutation((formContent) => axiosClient.post('/auth/login', formContent), {
+    const cancelTokenSource = axios.CancelToken.source();
+    const loginMutation = useMutation((formContent) => axiosClient.post('/auth/login', formContent, { cancelToken: cancelTokenSource.token }).catch((e) => {
+        if (axios.isCancel(e)) cancelTokenSource.cancel('login interrupted');
+    }), {
         onSuccess: (data) => {
+            if (!data) return null
             auth.login({ user: data.data.user })
         },
         onError: (error) => {
             console.log(error)
         }
     })
+
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -111,6 +117,10 @@ const LoginUser = () => {
 
             <div className="container w-[100vw] h-[80vh] flex flex-col gap-4 justify-center items-center mx-auto " >
 
+
+                {/*  */}
+                <div className='inline   w-40'> {loginMutation.isLoading && <Elephant scale={'1'} />} </div>
+
                 <div className="w-[30%] min-w-[450px] p-10 bg-purple-300
                 items-center flex flex-col gap-4 rounded-xl bg-left"
                     style={{ backgroundImage: 'url("/assets/gradients/gradient_login.png")' }}
@@ -143,11 +153,12 @@ const LoginUser = () => {
                             </a>
                         </div>
 
-                        <button type="submit" onClick={handleSubmit} className="w-full mt-4 p-2">Sign In </button>
+                        <button type="submit" onClick={handleSubmit} className="w-full mt-4 p-2 inline">
+                            Sign In
+                        </button>
                     </form>
-
-
                 </div>
+
                 <p className="text-sm font-bold text-gray-600 ">
                     No account yet? <a href="/admin/auth/register" className="underline">Sign Up</a>
                 </p>

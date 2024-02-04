@@ -3,8 +3,8 @@ import NavBar from "../components/navbar"
 import '../styles/rotate.css'
 // import ThreeD from "../utils/ThreeJS/three"
 import Footer from '../components/footer'
-import { useContext, useRef } from "react"
-import { ScrollContext } from "../utils/scrollObserver"
+import { useRef } from "react"
+
 
 
 // import { imageLinks } from "../utils/imageLinks"
@@ -18,15 +18,15 @@ const Landing = () => {
     // window.onload = () => ThreeD()
     const refContainer = useRef(null)
 
-    const { scrollY } = useContext(ScrollContext)
-    // console.log(scrollY, 'scrollY from landing');
+    // const { scrollY } = useContext(ScrollContext)
+    // // console.log(scrollY, 'scrollY from landing');
 
-    const { current: elContainer } = refContainer;
+    // const { current: elContainer } = refContainer;
 
-    let progress = 0;
-    if (elContainer) {
-        progress = Math.min(1, scrollY / elContainer.clientHeight);  // calculate progress of scroll in terms of percentage of height of container between 0 and 1
-    }
+    // let progress = 0;
+    // if (elContainer) {
+    //     progress = Math.min(1, scrollY / elContainer.clientHeight);  // calculate progress of scroll in terms of percentage of height of container between 0 and 1
+    // }
 
 
 
