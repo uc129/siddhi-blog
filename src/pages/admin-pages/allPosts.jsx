@@ -42,9 +42,9 @@ const AllPosts = () => {
             <h1>All Posts</h1>
             {posts && posts.map((post) => {
                 return (
-
-                    <PostBox post={post} />
-
+                    <div key={post._id}>
+                        <PostBox post={post} />
+                    </div>
                 )
             })
             }

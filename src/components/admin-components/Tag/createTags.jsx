@@ -104,7 +104,7 @@ const CreateTags = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="desc">Description</label>
+                    <label htmlFor="description">Description</label>
                     <textarea type="text" id="description" name='description' className="form-control -mt-[0.1em]"
                         onChange={handleChange}
                     />
@@ -117,7 +117,7 @@ const CreateTags = () => {
                 <div className="active w-full flex justify-around items-center gap-4">
                     <label htmlFor='status'>Status</label>
                     <div className='h-[1px] w-12 lg:w-28 xl:w-72 bg-black'></div>
-                    <select defaultValue={active} onChange={handleSelection} className={`${active ? 'bg-yellow-200 text-black hover:text-green-600' : 'bg-red-300 text-black hover:text-red-600'}`}>
+                    <select id='status' defaultValue={active} onChange={handleSelection} className={`${active ? 'bg-yellow-200 text-black hover:text-green-600' : 'bg-red-300 text-black hover:text-red-600'}`}>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                     </select>

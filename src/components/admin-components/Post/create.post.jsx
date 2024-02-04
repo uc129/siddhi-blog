@@ -552,22 +552,16 @@ const CreatePost = () => {
 
                                 <div>
                                     <label htmlFor="primary">Primary Image? </label>
-                                    <input type="checkbox" name="primary" id="primary"
-                                        onChange={handleImageDetailChange}
-                                    />
+                                    <input type="checkbox" name="primary" id="primary" onChange={handleImageDetailChange} />
                                 </div>
 
-                                <select name="status" id="image-status"
-                                    onChange={handleImageDetailChange}
-                                >
+                                <select name="status" id="image-status" onChange={handleImageDetailChange}>
                                     <option value=""> Select Status  </option>
                                     <option value="active">Active</option>
                                     <option value="inactive">Inactive</option>
                                 </select>
 
-                                <select name="category" id="image-category"
-                                    onChange={handleImageDetailChange}
-                                >
+                                <select name="category" id="image-category" onChange={handleImageDetailChange}>
                                     <option value=""> Select Category  </option>
                                     <option value="avatar">Avatar</option>
                                     <option value="post">Post</option>

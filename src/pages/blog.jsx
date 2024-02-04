@@ -25,8 +25,10 @@ const BlogPage = () => {
 
 
     async function fetchPosts() {
+        console.log('fetching posts');
         const { data } = await axiosClient.get('/blog/posts/all').catch((err) => console.log(err))
         if (!data) return;
+        console.log('fetched posts', data);
         const sortedPosts = data.sort((a, b) => new Date(b.dates.initiated) - new Date(a.dates.initiated));
         setTimeout(() => setPosts(sortedPosts), 400)
         return data
