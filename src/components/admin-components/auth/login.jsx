@@ -160,7 +160,7 @@ const LoginUser = () => {
                 </div>
 
                 <p className="text-sm font-bold text-gray-600 ">
-                    No account yet? <a href="/admin/auth/register" className="underline">Sign Up</a>
+                    No account yet? <a href="/register" className="underline">Sign Up</a>
                 </p>
             </div >
 
