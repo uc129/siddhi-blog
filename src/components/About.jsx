@@ -1,5 +1,6 @@
 import '../styles/background.css'
-const AboutMe = () => {
+const AboutMe = ({ parentScroll }) => {
+    console.log(parentScroll);
     const handleMouseEnter = () => {
         document.getElementById('box2')?.classList.add('box-hover')
         document.getElementById('box1')?.classList.add('box-hover')

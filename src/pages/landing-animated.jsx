@@ -5,11 +5,16 @@ import { ScrollContext } from '../utils/scrollObserver';
 const AnimatedLanding = () => {
 
     const { scrollY } = useContext(ScrollContext)
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollProgress = (scrollY / (scrollHeight - clientHeight)) * 100;
 
 
-    let clientH = window.innerHeight;
 
-    console.log(scrollY, clientH);
+
+
+
+
 
 
 
@@ -18,7 +23,7 @@ const AnimatedLanding = () => {
             <LandingHero />
 
             <div id="about" className="scroll-smooth">
-                <AboutMe />
+                <AboutMe parentScroll={scrollProgress} />
             </div>
 
         </div>
