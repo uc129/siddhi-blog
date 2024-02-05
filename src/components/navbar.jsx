@@ -8,11 +8,18 @@ const NavBar = () => {
     return (
 
         <nav className=" w-screen min-h-20 flex justify-around items-center py-8 font-garamond text-xs"  >
-            <img src={'/assets/SVG/logo.svg'} alt="logo" className="max-w-[0.6em] hover:-rotate-6 " onClick={() => window.location.href = '/'} />
+
+            <div className=' *:hover:-rotate-6' onClick={() => window.location.href = '/'}>
+                <img src={'/assets/SVG/logo.svg'} alt="logo" className=" h-10 w-10 pointer-events-none" />
+            </div>
+            <a href="/" className='hover:underline'>Home</a>
+
+
+
 
             <ul className="flex justify between list-none gap-8 " >
                 {/* <li> <a href='/portfolio' className=" nav-link "> Portfolio </a> </li> */}
-                <li> <a href='/' className=" nav-link "> Portfolio </a> </li>
+                <li> <a href='/portfolio' className=" nav-link "> Portfolio </a> </li>
 
                 <li> <a href='/#about' className=" nav-link "> About Me </a> </li>
 

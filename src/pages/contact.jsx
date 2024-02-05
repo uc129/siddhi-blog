@@ -14,9 +14,6 @@ const ContactMe = () => {
         zoom: 11
     };
 
-
-
-
     const [bgImage, setBgImage] = useState(null)
 
 
@@ -81,7 +78,7 @@ const ContactMe = () => {
 
 
                         <div className="font-bold w-full text-xl pb-4">
-                            <h1 className="text-3xl pb-2">Contact Me</h1>
+                            <h1 className="text-3xl pb-2">Contact Us</h1>
                             <p>Got Ideas? We've got the skills, <br /> Lets team up.</p>
                         </div>
 

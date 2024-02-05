@@ -55,16 +55,16 @@ const LandingHero = () => {
                 <div className="  pointer-events-none ">
                     <img src="/assets/SVG/bugs.svg" alt="bugs" className="bugs opacity-0 fadeInDelayed absolute bottom-0 left-0 w-full  object-cover" />
                     <img src="/assets//SVG/wild-flowers.svg" alt="flowers" className="flowers opacity-0 fadeInUpFlower  absolute bottom-2 left-0 w-full  object-cover" />
-                    <img src="/assets/SVG/grass.svg" alt="field" className="grass opacity-0 fadeInUpFlower absolute bottom-0 scale-110" />
+                    <img src="/assets/SVG/grass.svg" alt="field" className="grass opacity-0 fadeInUpFlower absolute bottom-0 scale-105" />
                 </div>
 
 
                 <div className="hero-body z-10 font-grape font-bold tracking-widest  h-full w-full items-center justify-center flex flex-col gap-8 text-center">
 
-                    <div className="header fadeinUp flex flex-col justify-center items-center gap-12 pt-12 " style={{ scale: `${scrollWidth / 80}` }}>
+                    <div className="header fadeinUp flex flex-col justify-center items-center gap-12 pt-12 " style={{ scale: `${scrollWidth / 88}` }}>
 
                         <div className=" flex flex-col justify-center items-center gap-4 ">
-                            <img className="h-10" src="/assets/SVG/tag.svg" alt="tagline" />
+                            <img className="h-8 pointer-events-none" src="/assets/SVG/tag.svg" alt="tagline" />
                             <div className="hero-headline  text-5xl sm:text-7xl xl:text-8xl uppercase" > The Sunday Drip</div>
                         </div>
 
@@ -75,7 +75,7 @@ const LandingHero = () => {
 
                     </div>
 
-                    <div className="scrollButton opacity-0 flex flex-col justify-center items-center text-3xl pt-24 ">
+                    <div className="scrollButton opacity-0 flex flex-col justify-center items-center text-3xl pt-56 ">
                         <span className="animate-bounce"><CgScrollV /></span>
                     </div>
 
@@ -87,9 +87,6 @@ const LandingHero = () => {
 
         </>
     )
-
-
-
 
 }
 

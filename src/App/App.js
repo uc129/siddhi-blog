@@ -14,6 +14,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from '../utils/authProvider';
 import AnimatedLanding from '../pages/landing-animated';
 import ContactMe from '../pages/contact';
+import Portfolio from '../pages/portfolio';
 export const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path='/' element={<AnimatedLanding />} />
         <Route path='/contact' element={<ContactMe />} />
+        <Route path='/portfolio' element={<Portfolio />} />
         <Route path='/blog' element={<BlogPage />} />
         <Route path='/blog/post' element={<PostDetailPage />} />
         <Route path='/register' element={<RegisterUser />} />

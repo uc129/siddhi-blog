@@ -1,6 +1,6 @@
 import '../styles/background.css'
 const AboutMe = ({ parentScroll }) => {
-    console.log(parentScroll);
+
     const handleMouseEnter = () => {
         document.getElementById('box2')?.classList.add('box-hover')
         document.getElementById('box1')?.classList.add('box-hover')
@@ -15,7 +15,7 @@ const AboutMe = ({ parentScroll }) => {
 
     return (
 
-        <div id='about-me' className=" h-full pb-24 p-24 pt-0 w-full  mx-auto overflow-hidden bg-black text-white">
+        <div id='about-me' className="pb-20 px-24 w-screen  mx-auto overflow-hidden bg-black text-white">
 
             <div className="grid max-w-[80%]  gap-8 grid-cols-12 ">
 
