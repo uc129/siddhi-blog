@@ -7,7 +7,9 @@ const AnimatedLanding = () => {
     const { scrollY } = useContext(ScrollContext)
 
 
-    console.log(scrollY, 'scroll');
+    let clientH = window.innerHeight;
+
+    console.log(scrollY, clientH);
 
 
 
