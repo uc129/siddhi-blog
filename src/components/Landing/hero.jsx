@@ -1,4 +1,5 @@
 import { CgScrollV } from "react-icons/cg";
+
 import NavBar from "../navbar";
 import '../../styles/animations.css'
 import '../../styles/landing.css'
@@ -36,7 +37,7 @@ const LandingHero = () => {
     return (
         <>
 
-            <div className="wrapper min-w-screen p-0 overflow-hidden ">
+            <div className="wrapper min-h-screen min-w-screen p-0 overflow-hidden bg-white ">
 
                 <div className="navbar opacity-0 fadeInDownDelayed">
                     <NavBar />
@@ -49,16 +50,16 @@ const LandingHero = () => {
                 </div>
 
 
-                <div className="hero-body z-10 font-garamond  h-full w-full items-center justify-center flex flex-col gap-8 text-center">
+                <div className="hero-body z-10 font-grape font-bold tracking-widest  h-full w-full items-center justify-center flex flex-col gap-8 text-center">
 
                     <div className="header fadeinUp flex flex-col justify-center items-center gap-12 pt-12 ">
 
                         <div className=" flex flex-col justify-center items-center gap-4 ">
                             <img className="h-10" src="/assets/SVG/tag.svg" alt="tagline" />
-                            <div className="hero-headline font-hero text-5xl sm:text-7xl xl:text-8xl"> The Sunday Drip</div>
+                            <div className="hero-headline  text-5xl sm:text-7xl xl:text-8xl uppercase"> The Sunday Drip</div>
                         </div>
 
-                        <p className=" fadeinUp w-[60%] text-justify text-sm  md:text-sm  lg:text-lg lg:w-[35%] lg:text-center">
+                        <p className=" fadeinUp font-chakra w-[60%] text-justify text-sm  md:text-sm  lg:text-lg lg:w-[35%] lg:text-center">
                             Unnati Chaudhary is an independent artist based in Delhi. She graduated with a Master's degree in English from Ashoka University and has worked with art galleries and organisations in varying capacities. Struggling to balance the minimal and the maximal in her art and life, she is interested in the contours of language, selfhood, and home.
                         </p>
 
@@ -69,6 +70,8 @@ const LandingHero = () => {
                     </div>
 
                 </div>
+
+
 
             </div>
 

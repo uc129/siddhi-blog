@@ -59,8 +59,6 @@ export const illustrationLinks = [
     { name: 'illustration9', link: 'https://res.cloudinary.com/drqofmj2h/image/upload/v1706425641/illustrator/Asset_9_fxhcd9.svg' },
 
 
-
-
     { name: 'illustration11', link: 'https://res.cloudinary.com/drqofmj2h/image/upload/v1706425622/illustrator/Asset_11_wexvcm.svg' },
 
     { name: 'illustration15', link: 'https://res.cloudinary.com/drqofmj2h/image/upload/v1706425610/illustrator/Asset_15_vtt9ar.svg' },

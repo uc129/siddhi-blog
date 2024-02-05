@@ -46,7 +46,7 @@ const PostHero = ({ date, author, volume, postNumber, title, slug, bgImage }) =>
     }, [imageFound, randomIllustration, bgImage, illustration.link])
 
 
-    // if (isLoading) return <Elephant scale={'0.4'} />
+    if (isLoading) return <Elephant scale={'0.4'} />
 
 
 
